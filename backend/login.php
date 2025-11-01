@@ -4,6 +4,7 @@ if(true){
     if($_POST){
         $nombre= $_POST["nombre"];
         $password= $_POST["contrasena"];
+        $correo= $_POST["correo"];
         if(file_exists("usuarios.json")){
             $archivo = file_get_contents("usuarios.json");
             
@@ -16,7 +17,7 @@ if(true){
             
 
             foreach($usuarios as $key => $value){
-                if($value["nombre"]==$nombre){
+                if($value["correo"]==$correo){
                     if(password_verify($password,$value["contrasena"])){
                         $_SESSION["nombre"] = $value["nombre"];
                         $_SESSION["correo"] = $value["correo"];
@@ -47,8 +48,8 @@ if(true){
 <body>
     <h2>Inicio del Registro</h2>
     <form action="login.php" method="POST">
-        <label for="nombre">Nombre:</label><br>
-        <input type="text" id="nombre" name="nombre" required><br><br>
+        <label for="correo">Correo:</label><br>
+        <input type="text" id="correo" name="correo" required><br><br>
 
         <label for="contrasena">Contraseña:</label><br>
         <input type="password" id="contrasena" name="contrasena" required><br><br>
