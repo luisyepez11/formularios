@@ -1,7 +1,13 @@
 <?php
-$nombre = "Guaicaipuro";
-$correo = "guaica@ejemplo.com";
-$fechaCreacion = "25/10/2025";
+session_start();
+if (isset($_SESSION["nombre"]) && $_SESSION["nombre"] != "" ){
+    $nombre = $_SESSION["nombre"];
+    $correo = $_SESSION["correo"];
+    $fechaCreacion = "25/10/2025";
+}
+else{   
+    header("Location: login.php");
+}
 $audioSource = "../frontend/src/clash_sonido.mp3"; 
 ?>
 <!DOCTYPE html>
