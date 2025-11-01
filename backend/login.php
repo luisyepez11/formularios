@@ -1,4 +1,5 @@
 <?php
+session_start();
 if(true){
     if($_POST){
         $nombre= $_POST["nombre"];
@@ -17,6 +18,8 @@ if(true){
             foreach($usuarios as $key => $value){
                 if($value["nombre"]==$nombre){
                     if(password_verify($password,$value["contrasena"])){
+                        $_SESSION["nombre"] = $value["nombre"];
+                        $_SESSION["correo"] = $value["correo"];
                         header("Location: clash.php");
                         exit;
                     } else {
