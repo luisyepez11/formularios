@@ -23,8 +23,16 @@ if($_POST){
         exit;
     } 
     
+
     else{
-        $usuario = ["nombre" => $nombre, "correo" => $correo, "contrasena" => password_hash($password, PASSWORD_DEFAULT)];
+        $fecha_creacion = date("Y-m-d H:i:s");
+        
+        $usuario = [
+            "nombre" => $nombre, 
+            "correo" => $correo, 
+            "contrasena" => password_hash($password, PASSWORD_DEFAULT),
+            "fecha_creacion" => $fecha_creacion
+        ];
         
         if(file_exists("usuarios.json")){
             $archivo = file_get_contents("usuarios.json");
