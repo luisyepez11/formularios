@@ -13,6 +13,12 @@ if($_POST){
         exit;
     }
 
+    require_once 'proceso_contraseña.php';
+    if (!validar_contrasena($password)) {
+        header("Location: index.php?error=La contraseña debe tener al menos 8 caracteres y una letra mayúscula");
+        exit;
+    }
+
     if($password !== $confirmar) {
         header("Location: index.php?error=Las contraseñas no coinciden");
         exit;
