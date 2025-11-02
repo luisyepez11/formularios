@@ -29,8 +29,16 @@ if($_POST){
         exit;
     } 
     
+
     else{
-        $usuario = ["nombre" => $nombre, "correo" => $correo, "contrasena" => password_hash($password, PASSWORD_DEFAULT)];
+        $fecha_creacion = date("Y-m-d H:i:s");
+        
+        $usuario = [
+            "nombre" => $nombre, 
+            "correo" => $correo, 
+            "contrasena" => password_hash($password, PASSWORD_DEFAULT),
+            "fecha_creacion" => $fecha_creacion
+        ];
         
         if(file_exists("usuarios.json")){
             $archivo = file_get_contents("usuarios.json");
@@ -40,6 +48,12 @@ if($_POST){
             }
             else{
                 $usuarios = [];
+            }
+
+            require_once 'proceso_contraseña.php';
+                if (!validar_contrasena($password)) {
+                    header("Location: index.php?error=La contraseña debe tener al menos 8 caracteres y una letra mayúscula");
+                exit;
             }
             
             $usuarios[] = $usuario;
