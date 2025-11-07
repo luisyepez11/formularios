@@ -3,7 +3,7 @@ session_start();
 if (isset($_SESSION["nombre"]) && $_SESSION["nombre"] != "" ){
     $nombre = $_SESSION["nombre"];
     $correo = $_SESSION["correo"];
-    $fechaCreacion = "25/10/2025";
+    $fechaCreacion = explode(" ",$_SESSION["fecha"])[0];
 }
 else{   
     header("Location: login.php");
@@ -31,7 +31,7 @@ $audioSource = "../frontend/src/clash_sonido.mp3";
             <div class="user-detail">
                 <p><strong>Nombre:</strong> <?php echo $nombre; ?></p>
                 <p><strong>Email:</strong> <?php echo $correo; ?></p>
-                <p><strong>Fecha de Creacion:</strong> <?php echo $fechaCreacion; ?></p>
+                <p><strong>Fecha de Creacion:</strong> <?php echo "</br>".$fechaCreacion; ?></p>
             </div>
             
             <hr>

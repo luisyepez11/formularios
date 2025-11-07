@@ -21,6 +21,7 @@ if(true){
                     if(password_verify($password,$value["contrasena"])){
                         $_SESSION["nombre"] = $value["nombre"];
                         $_SESSION["correo"] = $value["correo"];
+                        $_SESSION["fecha"] = $value["fecha_creacion"];
                         header("Location: clash.php");
                         exit;
                     } else {
