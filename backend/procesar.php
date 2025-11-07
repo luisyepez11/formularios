@@ -29,7 +29,6 @@ if($_POST){
         exit;
     } 
     
-
     else{
         $fecha_creacion = date("Y-m-d H:i:s");
         
@@ -50,9 +49,16 @@ if($_POST){
                 $usuarios = [];
             }
 
-            require_once 'proceso_contraseña.php';
-                if (!validar_contrasena($password)) {
-                    header("Location: index.php?error=La contraseña debe tener al menos 8 caracteres y una letra mayúscula");
+            $correo_existe = false;
+            foreach($usuarios as $usuario_existente) {
+                if($usuario_existente["correo"] === $correo) {
+                    $correo_existe = true;
+                    break;
+                }
+            }
+            
+            if($correo_existe) {
+                header("Location: index.php?error=El correo electrónico ya está registrado");
                 exit;
             }
             

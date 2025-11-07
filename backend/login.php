@@ -2,7 +2,6 @@
 session_start();
 if(true){
     if($_POST){
-        $nombre= $_POST["nombre"];
         $password= $_POST["contrasena"];
         $correo= $_POST["correo"];
         if(file_exists("usuarios.json")){
@@ -10,9 +9,13 @@ if(true){
             
             if($archivo){
                 $usuarios = json_decode($archivo,true);
+                if(count($usuarios)<=0){
+                     header("Location: index.php?error=No existen registros en la  base de datos" );
+                }
             }
             else{
                 $usuarios = [];
+                header("Location: index.php?error=No existen registros en la  base de datos" );
             }
             
 
@@ -32,9 +35,7 @@ if(true){
             
 
         }else{
-            $usuarios[] = $ususario;
-            $jsonUsuarios = json_encode($usuarios,JSON_PRETTY_PRINT);
-            file_put_contents("usuarios.json",$jsonUsuarios);
+            header("Location: index.php?error=No existen registros en la  base de datos");
         }
     }
 }

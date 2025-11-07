@@ -46,11 +46,12 @@ $audioSource = "../frontend/src/clash_sonido.mp3";
             
             <hr>
             
-            <div style = "display:flex; justify-content:center;">
-                <audio controls **autoplay** preload="auto" >
+            <div style="display:flex; justify-content:center;">
+                <audio controls id="reproductor">
                     <source src="<?php echo $audioSource; ?>" type="audio/mpeg">
                 </audio>
             </div>
+            
             <div class="main-image">
                 <h2>Saludos Jefe</h2>
                 <img src="../frontend/src/clash_of_clans_image.jpg" alt="Imagen de bienvenida grande" width="800" height="400">
@@ -58,6 +59,19 @@ $audioSource = "../frontend/src/clash_sonido.mp3";
             </div>
         </main>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var bandera = true;
+            const audio = document.getElementById('reproductor');
+            document.addEventListener('click', function() {
+                if (bandera){
+                audio.play();
+                bandera=false;
+                }
+            });
+        });
+    </script>
     
 </body>
 </html>
